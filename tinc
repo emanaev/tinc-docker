@@ -1,0 +1,14 @@
+#!/bin/bash
+NETNAME=test
+PARAMS="--rm --cap-add NET_ADMIN --device /dev/net/tun --net=host -e NETNAME=$NETNAME -v $PWD/$NETNAME:/usr/local/etc/tinc/$NETNAME"
+MODE=-it
+if [ $1 == start ]; then
+  docker run -d $PARAMS --name tinc emanaev/tinc tincd -D -d7
+  docker logs -f tinc 2>&1| grep -m 1 'Unconfigured tinc-up script, please edit'
+  ip link set $NETNAME up
+else if [ $1 == stop ]; then
+    docker stop tinc
+  else
+    docker run -it --rm $PARAMS emanaev/tinc tinc $*
+fi fi
+
