@@ -5,7 +5,7 @@ tinc is a P2P VPN network. Read http://tinc-vpn.org for details
 ```bash
 ./tinc init main
 ./tinc start
-ip addr add 10.10.0.1/16 dev testnet
+sudo ip addr add 10.10.0.1/16 dev testnet
 ```
 
 
@@ -24,7 +24,7 @@ Copy url and use it on the new node
 ```bash
 ./tinc join server:655/ds45-fsdfsdrd6
 ./tinc start
-ip addr add 10.10.0.2/16 dev testnet
+sudo ip addr add 10.10.0.2/16 dev testnet
 ping 10.10.0.1
 ```
 
